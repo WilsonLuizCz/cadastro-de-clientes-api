@@ -1,5 +1,5 @@
 const clientes = document.getElementById("clientesCadastrados");
-const apiUrl = "https://crudcrud.com/api/312ae47e1373408799ba1a91ac8123e3/clientes";
+const apiUrl = "https://crudcrud.com/api/ed48b4761ee34fb899c1221b528acbd1/clientes";
 
 // Função para criar item na tela
 function adicionarClienteNaTela(cliente) {
@@ -28,8 +28,10 @@ fetch(apiUrl)
         });
     });
 
-// Evento de envio
-document.getElementById("enviar").addEventListener("click", () => {
+// Evento de envio via submit (formulário)
+document.getElementById("formulario").addEventListener("submit", (e) => {
+    e.preventDefault(); // Impede o recarregamento da página
+
     const nome = document.getElementById("nome").value;
     const email = document.getElementById("email").value;
 
@@ -46,6 +48,7 @@ document.getElementById("enviar").addEventListener("click", () => {
     .then(resposta => resposta.json())
     .then(cliente => {
         adicionarClienteNaTela(cliente);
+
         // Limpa os campos
         document.getElementById("nome").value = "";
         document.getElementById("email").value = "";
